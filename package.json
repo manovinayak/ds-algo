@@ -8,8 +8,8 @@
     "lint": "prettier --check .",
     "format": "prettier --write ."
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["data structures", "algorithms"],
+  "author": "Manovinayak Ayyappan",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^22.13.8",
