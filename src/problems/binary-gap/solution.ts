@@ -2,7 +2,16 @@ const solution = (value: number) => {
   if (!isPositive(value)) {
     throw new Error('Number is not positive');
   }
-  const binaryValueArray = getBinaryValue(value);
+  // const binaryValueArray = getBinaryValue(value);
+  const binaryValue = convertToBinary(value);
+  if (!binaryValue) {
+    throw new Error('Binary value is empty');
+  }
+
+  const binaryValueArray = binaryValue.split('').map((value) => {
+    return Number(value);
+  });
+  console.log(binaryValue);
   let greatestGap = 0;
   let currentGap = 0;
 
@@ -17,6 +26,10 @@ const solution = (value: number) => {
     }
   }
   return greatestGap;
+};
+
+const convertToBinary = (value: number) => {
+  return value.toString(2);
 };
 
 /**
@@ -36,11 +49,11 @@ const getBinaryValue = (value: number): number[] => {
   return binaryArray;
 };
 
-const getLargestBinaryGap = (value: number) => {};
-
 const isPositive = (value: number) => {
   return value > 0;
 };
 
-console.log(getBinaryValue(1041).toString());
-console.log(solution(1041));
+console.log(`1041 => `, solution(1041));
+console.log(`10 => `, solution(10));
+console.log(`32 => `, solution(32));
+console.log(`15 => `, solution(15));
