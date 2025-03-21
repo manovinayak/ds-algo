@@ -66,6 +66,20 @@ class LinkedList {
       this.head = node;
       this.tail = node;
     }
+    this.length++;
+    return this;
+  }
+
+  shift(): LinkedList | boolean {
+    if (!this.head) {
+      return false;
+    } else {
+      this.head = this.head.next;
+      this.length--;
+      if (this.length === 0) {
+        this.tail = null;
+      }
+    }
     return this;
   }
 }
@@ -87,6 +101,17 @@ const main = () => {
   console.log(linkedList.pop());
   console.log(`----------------UNSHIFT---------------`);
   console.log(linkedList.unshift('Brisbane'));
+  console.log(`----------------SHIFT---------------`);
+  console.log(linkedList.shift());
+  console.log(`----------------PUSH---------------`);
+  console.log(linkedList.push('Sydney'));
+  console.log(linkedList.push('Melbourne'));
+  console.log(`----------------SHIFT---------------`);
+  console.log(linkedList.shift());
+  console.log(`----------------POP---------------`);
+  console.log(linkedList.pop());
+  console.log(`----------------SHIFT---------------`);
+  console.log(linkedList.shift());
 };
 
 main();
