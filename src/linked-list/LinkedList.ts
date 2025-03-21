@@ -55,18 +55,38 @@ class LinkedList {
       return this;
     }
   }
+
+  unshift(value: string): LinkedList {
+    const node = new LNode(value);
+
+    if (this.head) {
+      node.next = this.head;
+      this.head = node;
+    } else {
+      this.head = node;
+      this.tail = node;
+    }
+    return this;
+  }
 }
 
 const main = () => {
-  const linkedList = new LinkedList('mano');
+  const linkedList = new LinkedList('Melbourne');
   console.log(linkedList);
   console.log(`----------------PUSH---------------`);
-  console.log(linkedList.push('Chella'));
+  console.log(linkedList.push('Sydney'));
   console.log(`----------------POP---------------`);
   console.log(linkedList.pop());
   console.log(linkedList.pop());
   console.log(`----------------PUSH---------------`);
-  console.log(linkedList.push('Mithraa'));
+  console.log(linkedList.push('Brisbane'));
+  console.log(`----------------UNSHIFT---------------`);
+  console.log(linkedList.unshift('Perth'));
+  console.log(`----------------POP---------------`);
+  console.log(linkedList.pop());
+  console.log(linkedList.pop());
+  console.log(`----------------UNSHIFT---------------`);
+  console.log(linkedList.unshift('Brisbane'));
 };
 
 main();
