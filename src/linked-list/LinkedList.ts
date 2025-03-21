@@ -1,35 +1,72 @@
-export class Node {
+class LNode {
   value: string;
-  next?: Node;
+  next: LNode | null;
   constructor(value: string) {
     this.value = value;
-    this.next = this;
+    this.next = null;
   }
 }
 
-/**
- * Singly Connected Linked list
- */
-export class LinkedList {
-  head: Node;
-  tail: Node;
+class LinkedList {
+  head: LNode | null;
+  tail: LNode | null;
+  length: number;
+
   constructor(value: string) {
-    const node = new Node(value);
+    const node = new LNode(value);
     this.head = node;
     this.tail = node;
+    this.length = 1;
   }
 
   push(value: string): LinkedList {
-    const newNode = new Node(value);
-
-    if (!this.head) {
+    const newNode = new LNode(value);
+    if (this.head) {
+      this.head.next = newNode;
+      this.tail = newNode;
+      this.length++;
+    } else {
       this.head = newNode;
       this.tail = newNode;
-    } else {
-      this.tail.next = newNode;
-      this.tail = newNode;
+      this.length++;
     }
-
     return this;
   }
+
+  pop(): LinkedList | boolean {
+    let temp, pre;
+    if (!this.head) {
+      return false;
+    } else {
+      temp = this.head;
+      pre = this.head;
+      while (temp.next !== null) {
+        pre = temp;
+        temp = temp.next;
+      }
+      pre.next = null;
+      this.tail = pre;
+      this.length--;
+
+      if (this.length === 0) {
+        this.head = null;
+        this.tail = null;
+      }
+      return this;
+    }
+  }
 }
+
+const main = () => {
+  const linkedList = new LinkedList('mano');
+  console.log(linkedList);
+  console.log(`----------------PUSH---------------`);
+  console.log(linkedList.push('Chella'));
+  console.log(`----------------POP---------------`);
+  console.log(linkedList.pop());
+  console.log(linkedList.pop());
+  console.log(`----------------PUSH---------------`);
+  console.log(linkedList.push('Mithraa'));
+};
+
+main();
