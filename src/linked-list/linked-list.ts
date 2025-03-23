@@ -97,6 +97,16 @@ class LinkedList {
       }
     }
   }
+
+  set(index: number, value: string): LinkedList | boolean {
+    const node = this.get(index);
+    if (node) {
+      node.value = value;
+    } else {
+      return false;
+    }
+    return this;
+  }
 }
 
 const main = () => {
@@ -132,8 +142,11 @@ const main = () => {
   console.log(linkedList.push('Melbourne'));
   console.log(linkedList.push('Perth'));
   console.log(JSON.stringify(linkedList.push('Adelaide'), null, 2));
-  console.log(`----------------PUSH---------------`);
+  console.log(`----------------GET---------------`);
   console.log(linkedList.get(2));
+  console.log(`----------------SET---------------`);
+  console.log(JSON.stringify(linkedList.set(2, 'Brisbane'), null, 2));
+  console.log(JSON.stringify(linkedList.set(9, 'Brisbane'), null, 2));
 };
 
 main();
