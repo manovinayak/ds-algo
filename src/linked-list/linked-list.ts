@@ -83,6 +83,10 @@ class LinkedList {
   }
 
   get(index: number): LNode | undefined {
+    if (index < 0 || index >= this.length) {
+      return undefined;
+    }
+
     if (!this.head) {
       return undefined;
     } else {
@@ -106,6 +110,17 @@ class LinkedList {
       return false;
     }
     return this;
+  }
+
+  remove(index: number): LinkedList {
+    if (index === 0) {
+      this.shift();
+    } else if (index === this.length - 1) {
+      this.pop();
+    } else {
+      let previous = this.get(index - 1);
+      let next = this.get(index + 1);
+    }
   }
 }
 
