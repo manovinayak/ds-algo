@@ -21,15 +21,14 @@ class LinkedList {
 
   push(value: string): LinkedList {
     const newNode = new LNode(value);
-    if (this.head) {
-      this.head.next = newNode;
-      this.tail = newNode;
-      this.length++;
-    } else {
+    if (!this.head || !this.tail) {
       this.head = newNode;
       this.tail = newNode;
-      this.length++;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
     }
+    this.length++;
     return this;
   }
 
@@ -82,6 +81,22 @@ class LinkedList {
     }
     return this;
   }
+
+  get(index: number): LNode | undefined {
+    if (!this.head) {
+      return undefined;
+    } else {
+      let temp = this.head;
+      for (let i = 0; i < this.length; i++) {
+        if (i === index) {
+          return temp;
+        }
+        if (temp.next) {
+          temp = temp.next;
+        }
+      }
+    }
+  }
 }
 
 const main = () => {
@@ -112,6 +127,13 @@ const main = () => {
   console.log(linkedList.pop());
   console.log(`----------------SHIFT---------------`);
   console.log(linkedList.shift());
+  console.log(`----------------PUSH---------------`);
+  console.log(linkedList.push('Sydney'));
+  console.log(linkedList.push('Melbourne'));
+  console.log(linkedList.push('Perth'));
+  console.log(JSON.stringify(linkedList.push('Adelaide'), null, 2));
+  console.log(`----------------PUSH---------------`);
+  console.log(linkedList.get(2));
 };
 
 main();
