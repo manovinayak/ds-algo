@@ -28,6 +28,10 @@ const main = () => {
   linkedList.remove(3);
   linkedList.push('Darwin');
   linkedList.set(2, 'Brisbane');
+  linkedList.insert(1, 'Canberra');
+  linkedList.insert(3, 'Perth');
+  linkedList.insert(6, 'Cairns');
+  linkedList.insert(8, 'invalid');
   print(linkedList);
 };
 

@@ -139,4 +139,31 @@ export class LinkedList {
 
     return this;
   }
+
+  insert(index: number, value: string): LinkedList | boolean {
+    if (index < 0 || index >= this.length) {
+      return false;
+    }
+    if (index === 0) {
+      return this.unshift(value);
+    }
+    if (index === this.length - 1) {
+      return this.push(value);
+    }
+    let temp = this.head;
+    let prev = this.head;
+    for (let i = 0; i < index; i++) {
+      if (temp?.next) {
+        prev = temp;
+        temp = temp.next;
+      }
+    }
+    if (temp && prev) {
+      const newNode = new LNode(value);
+      prev.next = newNode;
+      newNode.next = temp;
+      this.length++;
+    }
+    return this;
+  }
 }
