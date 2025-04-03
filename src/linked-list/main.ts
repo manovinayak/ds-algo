@@ -33,6 +33,8 @@ const main = () => {
   linkedList.insert(6, 'Cairns');
   linkedList.insert(8, 'invalid');
   print(linkedList);
+  linkedList.reverse();
+  print(linkedList);
 };
 
 main();

@@ -166,4 +166,27 @@ export class LinkedList {
     }
     return this;
   }
+
+  reverse(): LinkedList | undefined {
+    if (!this.head && !this.tail) {
+      return undefined;
+    }
+    if (this.head && this.tail) {
+      let temp: LNode | null = this.head;
+      this.head = this.tail;
+      this.tail = temp;
+      let next = temp.next;
+      let prev = null;
+
+      for (let i = 0; i < this.length; i++) {
+        if (temp) {
+          next = temp.next;
+          temp.next = prev;
+          prev = temp;
+          temp = next;
+        }
+      }
+    }
+    return this;
+  }
 }
