@@ -25,13 +25,12 @@ export class DoublyLinkedList {
       this.head = newNode;
       this.tail = newNode;
       this.length = 1;
+    } else {
+      this.tail.next = newNode;
+      newNode.prev = this.tail;
+      this.tail = newNode;
+      this.length++;
     }
-
-    this.tail.next = newNode;
-    newNode.prev = this.tail;
-    this.tail = newNode;
-    this.length++;
-
     return this;
   }
 
@@ -89,8 +88,65 @@ export class DoublyLinkedList {
       }
     }
 
-    this.length--;
+    this.length = this.length - 1;
     return temp;
+  }
+
+  get(index: number): DLNode | undefined | null {
+    if (this.length === 0 || index < 0 || index >= this.length) {
+      return undefined;
+    }
+    if (index < this.length / 2) {
+      let temp = this.head;
+      for (let i = 0; i < index; i++) {
+        if (temp) {
+          temp = temp.next;
+        }
+      }
+      return temp;
+    } else {
+      let temp = this.tail;
+      for (let i = this.length - 1; i > index; i--) {
+        if (temp) {
+          temp = temp.prev;
+        }
+      }
+      return temp;
+    }
+  }
+
+  set(index: number, value: string): boolean {
+    const temp = this.get(index);
+    if (temp) {
+      temp.value = value;
+      return true;
+    }
+    return false;
+  }
+
+  insert(index: number, value: string): boolean {
+    if (index < 0 || index > this.length) {
+      return false;
+    }
+    if (index === 0) {
+      this.unshift(value);
+      return true;
+    }
+    if (index === this.length - 1) {
+      this.push(value);
+      return true;
+    }
+    const newNode = new DLNode(value);
+    let before = this.get(index - 1);
+    if (before && before.next) {
+      let after = before.next;
+      before.next = newNode;
+      newNode.prev = before;
+      newNode.next = after;
+      after.prev = newNode;
+      this.length++;
+    }
+    return true;
   }
 
   printForward() {
@@ -100,7 +156,7 @@ export class DoublyLinkedList {
       results.push(current.value);
       current = current.next;
     }
-    console.log(`Length: `, results.length);
+    console.log(`Length: `, this.length);
     console.log(results.join(' <-> '));
   }
 }
