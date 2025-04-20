@@ -36,3 +36,6 @@ doublyLinkedList.printForward();
 console.log(`--------------------insert-----------------`);
 doublyLinkedList.insert(1, 'Hobart');
 doublyLinkedList.printForward();
+console.log(`--------------------remove-----------------`);
+doublyLinkedList.remove(2);
+doublyLinkedList.printForward();
