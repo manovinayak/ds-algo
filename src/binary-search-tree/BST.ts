@@ -14,23 +14,29 @@ export class BST {
   constructor() {
     this.root = null;
   }
-  insert(value: number): BST | undefined {
+
+  insert(value: number): BST | null | undefined {
     const bstNode = new BSTNode(value);
-    if (this.root === null) {
+
+    if (!this.root) {
       this.root = bstNode;
+      return this;
     }
-    let temp = this.root;
+    let temp: BSTNode | null = this.root;
+
     while (true) {
-      if (temp.value === value) {
-        return undefined;
+      if (!temp) {
+        return null;
       }
-      if (value < temp.value) {
+      if (value === temp.value) {
+        return undefined;
+      } else if (value < temp.value) {
         if (temp.left === null) {
           temp.left = bstNode;
           return this;
         }
         temp = temp.left;
-      } else {
+      } else if (value > temp.value) {
         if (temp.right === null) {
           temp.right = bstNode;
           return this;
@@ -41,10 +47,11 @@ export class BST {
   }
 
   contains(value: number): boolean {
-    if (this.root === null) {
+    if (!this.root) {
       return false;
     }
     let temp: BSTNode | null = this.root;
+
     while (temp) {
       if (value < temp.value) {
         temp = temp.left;

@@ -11,6 +11,7 @@ myBST.insert(52);
 myBST.insert(82);
 
 console.log(JSON.stringify(myBST, null, 2));
+
 console.log(myBST.contains(27));
 console.log(myBST.contains(82));
 console.log(myBST.contains(100));
