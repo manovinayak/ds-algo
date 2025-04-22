@@ -19,8 +19,8 @@ const findDuplicates = (arr: number[] = []): number[] => {
   const valuesMap = new Map<number, number>();
   const duplicates: number[] = [];
   for (let i = 0; i < arr.length; i++) {
-    let count = valuesMap.get(arr[i]);
-    if (count) {
+    if (valuesMap.has(arr[i])) {
+      let count = valuesMap.get(arr[i]) ?? 0;
       count++;
       valuesMap.set(arr[i], count);
       if (count > 1) {
