@@ -21,8 +21,6 @@
 const subarraySum = (arr: number[], target: number) => {
   const sumIndex = new Map<number, number>();
   let currentSum = 0;
-  sumIndex.set(0, -1);
-
   for (let i = 0; i < arr.length; i++) {
     currentSum += arr[i];
     if (sumIndex.has(currentSum - target)) {
@@ -31,7 +29,6 @@ const subarraySum = (arr: number[], target: number) => {
       sumIndex.set(currentSum, i);
     }
   }
-
   return [];
 };
 
